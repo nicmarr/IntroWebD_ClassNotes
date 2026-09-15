@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Class Cookbook — Submit a Recipe</title>
+    <style>
+      #top {
+        color: red;
+      }
+    </style>
+    <!--this is the style tag, so we write it in css-->
+  </head>
+  <body>
+    <!-- Command + / to comment in whatever language you are currently writing -->
+   <h1 style="font-size:50px;">Class Cookbook</h1>
+   <hr>
+    <p id="top">
+      Last class we marked up a recipe as a web page. Today we build the form
+      someone would fill out to send us one. For more information see
+      <a href="https://www.w3schools.com/html/html_forms.asp" target="_blank"
+        >W3 Schools Tutorials</a
+      >. Whenever you need to make an anchor tag but you don't have the final
+      link/url yet... use the <code>#</code> for your href!
+      <!--the code tag in green is a new tag too.
+      lo de id=top es unico, lo que viene siendo lo que se vera editado con el color tag (osea lo que tendra el color)-->
+    </p>
+    <hr>
+    <p>This is a random extra text just to test the "poem problem" lol</p>
+   
+    <pre> 
+        My bonnie lies over the ocean.
+        My Bonnie lies over the sea.
+        My Bonnie lies over the ocean.
+        Oh, bring back my Bonnie to me.
+    </pre>
+
+    <!-- ============================================================
+         THE FORM GOES HERE.
+
+         We build it together, one fieldset at a time:
+
+           1. Who is cooking?   text, email, password
+           2. The recipe        text, number, range, select
+           3. How hard is it?   radio    (one answer only)
+           4. Dietary tags      checkbox (several answers)
+           5. The actual food   textarea
+           6. Extras            file, url, date, color
+           7. Buttons           submit, reset
+
+         Start with the <form> tag itself and its attributes, then add
+         one fieldset at a time. Do not skip ahead -- the point is to
+         watch what each input type does in the browser as we add it.
+         ============================================================ -->
+<!--the form tag itsef is not visible on the page. it wraps form elements and bakes in some browser default behavior.
+another note; you can hit enter key to submit a small form. clicking any button inside the form will submit the form-->
+
+<!--GET to retrieve data, POST to write database, or send data to a result API endpoint. PUT is to edit/update an existing entry in the database, DELETE deletes a record from the database.-->
+<form name="contact us" target="_self" method="POST">
+<!--this is an old school tag, but its nice for grouping form data wihtout CSS
+GET hace que los datos sean visibles en la URL, POST los envía al servidor sin mostrarlos en la URL-->
+<fieldset>
+    <!--a legend is the tittle of the form group/fieldset-->
+    <legend>who is cooking?</legend>
+    <p>
+        we can put any other tag inside of a form, maybe its for instructions or a diagram or a test question.
+    </p>
+
+    <label for="firstName">First Name:</label>
+    <input 
+    type="text" 
+    id="firstName" 
+    name="firstName" 
+    required placeholder="Random text here"
+    />
+    <!-- aparte de required tambien existe disabled. placeholder es para el cuadradito en donde se escribira en el website -->
+<br />
+<br />
+<!--este br es para el espacio entre los inputs de first y last name (que se vean en fila en vez de al lado del otro el el website)-->
+    <label for="lastName">Last Name:</label>
+    <input 
+    type="text" 
+    id="lastName" 
+    name="lastName" 
+    required placeholder="Random text here"
+    maxlength="5"
+    />
+    <label for="age">age:</label>
+    <input type="number" 
+    id="age"
+    name="age"
+    min="0"
+    max="120" 
+    step="0.01"
+    />
+    <!--el maxlenght es para el maximo de caracteres permitidos al escribir en el website lol
+    el step es para hacer que el usuario ponga datos mas aceratados (en age no tiene sentido pero fue para el)-->
+</fieldset>
+<fieldset>
+    <legend>Set up User account</legend>
+    <label for="email">Email</label>
+    <input name="email" id="email" type="email" required />
+    <br />
+    <br />
+    <label for="password">Password</label>
+    <input name="password" id="password" type="password" required />
+    <br />
+    <br />
+    <label for="userBio">Bio</label>
+    <textarea 
+    name="userBio" 
+    id="userBio" 
+    rows="10" 
+    cols="50"
+    placeholder="Tell us about yourself"
+    ></textarea>
+</fieldset>
+
+<fieldset>
+    <legend>Checkbox Groups</legend>
+    <p>Check boxes allow the user to select more than one value at once. Grouped checboxes (aka for the same answer) 
+        all share the same name attribute. Each checkbox has a unique value attribute that is sent to the server if that check box is checked.</p>
+    </p>
+    <label for="pet">what pets do you have?</label><br />
+<!--when you copy paste checkbox or radio groups make sure you update the label (chechbox para seleccionar mas de uno, radio para SOLO poder seleccionar uno)-->
+    <label><input type="checkbox" name="pet" id="dog" value="dog" />DOG</label>
+    <label><input type="checkbox" name="pet" id="cat" value="cat" />CAT</label>
+    <label><input type="checkbox" name="pet" id="bird" value="bird" />BIRD</label>
+    <label><input type="checkbox" name="pet" id="fish" value="fish" />FISH</label>
+</fieldset>
+
+<fieldset>
+    <legend>Checkbox Select (Radio) Groups</legend>
+    <p>Check boxes allow the user to select more than one value at once. Grouped checboxes (aka for the same answer) 
+        all share the same name attribute. Each checkbox has a unique value attribute that is sent to the server if that check box is checked.</p>
+    </p>
+    <label for=" favorite pet">what pets do you preffer?</label><br />
+<!--when you copy paste checkbox or radio groups make sure you update the label-->
+    <label><input type="radio" name="pet" id="dog" value="dog" />DOG</label>
+    <label><input type="radio" name="pet" id="cat" value="cat" />CAT</label>
+    <label><input type="radio" name="pet" id="bird" value="bird" />BIRD</label>
+    <label><input type="radio" name="pet" id="fish" value="fish" />FISH</label>
+</fieldset>
+
+<fieldset>
+    <legend>Dropdown Select</legend>
+    <label for="state">Pick a state:</label>
+    <!--select element wraps the groups options for the dropdown-->
+    <!--the plain text is what the user sees, the value is what is sent to the server-->
+    <select name="state" id="state">
+        <option value="NY">New York</option>
+        <option value="NJ">New Jersey</option>
+        <option value="CT">Connecticut</option>
+        <option value="PA">Pennsylvania</option>
+    </select>
+</fieldset>
+
+<!-- any button will submit the form if its inside the form tag-->
+<button role="button">Submit form</button>
+
+
+<input type="submit" value="submit form" type="button disabled">
+</form>
+
+    <p><a href="#top">Back to Top</a></p>
+    <!-- este href=top es para cuando tengas web pages muy largos, sea mas facil regresar al incio (scroll up) porque 
+     lo esta linkeando al top de nuevo de arriba (es el back to top button)-->
+  </body>
+</html>

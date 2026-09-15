@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Find Your Perfect Recipe</title>
+    <style>
+      #top {
+        color: rgb(144, 0, 255);
+      }
+    </style>
+  </head>
+  <body>
+   <h1 style="font-size:60px;">Discover your next favorite recipe!</h1>
+   <hr>
+    <p id="top">
+      From <em>delicious</em> <strong>vanilla cupcakes</strong> to <em>mouthwatering</em> <strong>tacos</strong>, we have a recipe for every occasion and cooking level. Whether you are looking for a simple vanilla cupcake recipe or a complex dish recipe, we have you covered!
+    </p>
+    <hr>
+    <p>
+        To better assist you with the process, please answer to the following questions and we will provide you with the best recipe for your cooking experience!
+    </p>
+
+    <form name="contact us" target="_self" method="POST">
+        <fieldset>
+            <legend> Who is Cooking?</legend>
+            <p>Please introduce yourself</p>
+            <label for="firstName">First Name:</label>
+            <input type="text" name="firstName" id="firstName" placeholder="Jane" required />
+            <br />
+            <br />
+            <label for="lastName">Last Name:</label>
+            <input type="text" name="lastName" id="lastName" placeholder="Doe" required />
+            <label for="age">age:</label>
+            <input type="number" name="age" id="age" min="0" max="120" placeholder="25" required />
+        </fieldset>
+
+        <fieldset>
+            <legend>The Recipe:</legend>
+            <p>Let's get you set with a user account!</p>
+            <label for="email">Email</label>
+            <input name="email" id="email" type="email" placeholder="jane.doe@example.com" required />
+            <br />
+            <br />
+            <label for="password">Password</label>
+            <input name="password" id="password" type="password" placeholder="********" required />
+            <br />
+            <br />
+            <label for="phone">Enter a phone number:</label>
+            <input type="tel" name="phone" id="phone" placeholder="123-456-7890" required />
+            <br />
+            <br />
+            <label for="userBio">Bio:</label>
+            <textarea 
+            name="userBio" 
+            id="userBio" 
+            rows="10" 
+            cols="50" 
+            placeholder="Please tell us a little about yourself!" 
+            required
+            ></textarea>
+            <br />
+            <br />
+            <label for="gender">Select your gender:</label>
+            <select id="gender" name="gender" required>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Non-binary">Non-binary</option>
+                <option value="Prefer not to say">Prefer not to say</option>
+            </select>
+        </fieldset>
+
+        <fieldset>
+            <legend>How hard is it?</legend>
+            <p>What's your experience level in the kitchen?</p>
+             <label for="cookingLevel">Please choose only one:</label><br />
+            <label><input type="radio" name="cookingLevel" id="beginner" value="beginner" />Beginner</label>
+            <label><input type="radio" name="cookingLevel" id="intermediate" value="intermediate" />Intermediate</label>
+            <label><input type="radio" name="cookingLevel" id="advanced" value="advanced" />Advanced</label>
+        </fieldset>
+
+        <fieldset>
+            <legend>Dietary tags:</legend>
+            <p>Tell us about your dietary preferences!</p>
+            <label for="diet">Please check all that apply:</label><br />
+            <label><input type="checkbox" name="diet" id="vegetarian" value="vegetarian" />Vegetarian</label>
+            <label><input type="checkbox" name="diet" id="vegan" value="vegan" />Vegan</label>
+            <label><input type="checkbox" name="diet" id="glutenFree" value="glutenFree" />Gluten-Free</label>
+            <label><input type="checkbox" name="diet" id="DairyFree" value="DairyFree" />Dairy-Free</label>
+            <label><input type="checkbox" name="diet" id="NutFree" value="NutFree" />Nut-Free</label>
+            <label><input type="checkbox" name="diet" id="None" value="None" />None</label>
+            <label><input type="checkbox" name="diet" id="Other" value="Other" />Other</label>
+        </fieldset>
+
+        <fieldset>
+            <legend>The actual food:</legend>
+            <textarea
+            name="food" 
+            id="food" 
+            rows="10" 
+            cols="50" 
+            placeholder="Describe the taste you want to find a recipe for! (salty, sweet, sour, bitter, umami)" 
+            required
+            ></textarea>
+        </fieldset>
+
+        <fieldset>
+            <legend>Extras:</legend>
+            <p>Just before we get you all settled, we would love to have some additional information about you! (you may skip this part if needed)</p>
+            <label for="files">Please upload all of your favorite recipes:</label>
+            <input type="file" name="files" id="files" accept=".pdf,.doc,.docx,.txt,.jpg,.jpeg,.png" multiple />
+            <br />
+            <br />
+            <label for="homepage">Add a link to your social medias:</label>
+            <input type="url" name="homepage" id="homepage" placeholder="https://yourwebsite.com" />
+            <br />
+            <br />
+            <label for="birthday">When is your birthday?</label>
+            <input type="date" name="birthday" id="birthday" />
+            <br />
+            <br />
+            <label for="color">Pick your favorite color!</label>
+            <input type="color" name="color" id="color" />
+        </fieldset>
+
+         <button role="button">Submit form</button>
+         <input type="reset" value="Reset">
+
+    </form>
+     <p><a href="#top">Back to Top</a></p>
+  </body>
+</html>
