@@ -1,0 +1,90 @@
+* {
+  margin: 5px;
+  padding: 5px;
+}
+
+body {
+  font-family: 'fliege mono', monospace;
+}
+
+header {
+    ul {
+  list-style-type: none;
+  overflow: hidden;
+  background-color: rgb(255, 200, 252);
+  font-size: 0;
+    }
+
+    li {
+  display: inline-block;
+  font-size: 16px;
+  width: 200px;
+  text-align: center;
+    }
+
+    li:hover {
+  background-color: rgba(0,0,0,0.5);
+    }
+}
+ 
+
+aside {
+  width: 30%;
+  padding-left: 15px;
+  margin-left: 15px;
+  float: right;
+  background-color: rgb(255, 200, 252);
+
+    li a {
+  display: block;
+  padding: 5px;
+  text-decoration: none;
+  color: rgb(255, 0, 119);
+    }
+
+    li a:hover {
+  background-color: rgba(0,0,0,0.5);
+    } 
+  }
+
+ main {
+     #Fancy_Description {
+        font-family: cursive;
+        font-style: italic;
+        color:rgb(151, 22, 80)
+      } 
+ }
+
+ .The_Actual_Recipe {
+  background-color:  rgb(255, 200, 252);
+}
+
+.The_Actual_Recipe > h3, .Notes {
+  margin: 5px;
+  padding: 5px;
+}
+
+.Notes {
+  background:  rgb(249, 247, 249);
+}
+
+footer {
+    background-color:  rgb(127, 58, 123);
+    text-decoration: none;
+    color: rgb(253, 230, 241);
+
+    p a {
+  text-decoration: none;
+  color: rgb(255, 0, 119);
+    }
+
+    ul a {
+     text-decoration: none;
+     color: rgb(255, 0, 119);
+    }
+
+    li a:hover {
+    background-color: rgba(0,0,0,0.5);
+    }
+  }
+
