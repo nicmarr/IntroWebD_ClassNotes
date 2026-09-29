@@ -1,0 +1,65 @@
+/* load the font first so we can use it in out style sheet */
+@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
+
+/* ¡¡¡HOW WE APPLY THE CUSTOM FONT!!!
+____________________________________________*/
+/* font-family "kaushan script", cursive;*/
+
+* {
+    margin: 0;
+    padding: 0;
+    /* este univeral selector de marguin y padding es para que no se ponga el 
+    margin y padding generico al abrirlo en google, si no que para que nosotros 
+    lo vayamos modificando.*/
+}
+
+/* add our custom font as the default font for the page */
+html {
+    font-family: 'kaushan script' , cursive;
+    /* declare and use a full size image BG */
+    background: url('../img/bg.jpg') no-repeat center center fixed;
+    background-size: cover;
+    /* estas dos lineas de beckground de arriba siempre mantenlas en mente para que
+    la imagen de fondo en los websites funcione!!*/
+}
+
+.container {
+    width: 900px;
+    margin: 0 auto;
+    /* recuerda que el 0 auto es para centrar todo en la mayoria de las veces.*/
+    /* this is a container for element we want to stack using inline block
+    SO we need to zero out the font size.*/
+    font-size: 0;
+}
+
+.polaroid {
+    width: 260px;
+    margin: 20px;
+    /* 260 + 20 + 20 = 300 px which stacks perfectly in our container of 900px*/
+    display: inline-block;
+    position: relative;
+}
+
+/* descendant selector looking for a specific pattern of elements */
+.polaroid img {
+    /* this targets only the images inside of a polarois div (division). */
+    /* this is a common style for the image tag everywhere
+    make the image 100% width of its parent, then size the parent */
+    width: 100%;
+    height: auto;
+    /* add a uniform border all around */
+    border: 10px solid #ccc;
+    border-bottom-width: 45px;
+}
+
+.polaroid p {
+    font-size: 1rem;
+    /* 1rem = 16px, so 0.5rem is 8px, 2rem is 32px */
+    color: rgb(185, 0, 0);
+    position: absolute;
+    bottom: 10px;
+    width: 280px;
+    text-align: center;
+    /* tambien hay text-align: jusitify; , pero jusitify usalo cuando tengas mucho texto */
+    
+}

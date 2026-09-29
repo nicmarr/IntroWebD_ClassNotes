@@ -1,0 +1,121 @@
+/* We write this together in class. */
+
+body {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  color: #555;
+}
+
+/* every div on the page, so we can SEE our boxes while we work */
+/* divs have no height until it has content or other box properties defined */
+div {
+  background-color: rgba(0, 0, 200, 0.1);
+}
+
+/* ---------- nav bar ELEMENTS HERE ---------- */
+
+.nav {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0;
+  /* continuación a lo de abajo dentro de .nav-item, ESTE ES EL PARENT!!!*/
+}
+/* whenever you make elements stacks (el bloque azul marino de home, projects, about, etc. para que 
+se vea como un solo cuadrado y no se vean 4 cuadrados.)
+horizontally using inline-blocks, you have to zero out the font size of the parent element.
+this gets rids of the "space between letters" automatically added to inline elements*/
+.nav-item {
+  display: inline-block;
+  padding: 12px 20px;
+  background-color: #006fff;
+  /* when you zero out the parent of an inline block element, dont forget to redeclare/re-assign the font size 
+  to the child element (este es el child element btw).*/
+  font-size: 16px;
+}
+
+/* el elemento ".nav-item" es el child del elemento parent de .nav en este caso, -item se usa 
+para describir las propiedades de los hijos*/
+.nav-item a {
+  color: white;
+  text-decoration: none;
+}
+
+/* ---------- photo grid, fixed pixels ELEMENTS HERE---------- */
+.gallery {
+  width: 900px;
+  margin: 0 auto;
+   /* 0 margin on top and bottom, even margin on left and right */
+  /*el auto no funciona para todo, pero en este caso si nos puede servir para centrar la 
+  cajita de lorem impsum dolor debajo de "home, projects, etc"*/
+  padding: 10px;
+  /* this is the parent of inline block element, so we zero out the font size.*/
+  font-size: 0;
+}
+
+.gallery-item {
+  display: inline-block;
+  font-size: 16px;
+  /*este es el child, asi que tenemos que traer de vuelta el font size original*/
+  width: 200px;
+  height: 200px;
+  margin: 0 10px;
+  /* cuando pusimos 20px en vez de 10px en margin, los cuadrados en vez de
+  verse los cuatro en la misma linea horizontal, el ultimo cuadrado se ponia abajo,
+  viendose como 2 filas en vez de 1, asi que checa siempre esto cuando utilices esto y encuentra
+  el numero que si debe ser para que quede como quieres (una sola linea horizontal)*/
+}
+
+.gallery-item-border {
+  display: inline-block;
+  font-size: 16px;
+  width: 190px; /* 190 + 5 ox border left + 5px border-right = 200 px */
+  height: 130px;
+  border: 5px solid rgb(68, 68, 219);
+}
+
+.gallery-item-padding {
+  display: inline-block;
+  font-size: 13px;
+  width: 150px; /* 150px + 5px LB +5pxRB + 20px LP + 20pc RP */
+  height: 150px;
+  border: 5px solid rgb(68, 68, 219);
+  padding: 20px;
+}
+
+.gallery-fluid {
+  width: 90%;
+  margin: 0 auto;
+  padding: 2%;
+  font-size: 0;
+}
+
+.gallery-item-fluid {
+  display: inline-block;
+  font-size: 16px;
+  width: 21%;
+  /* % for height only work if its parent has a fixed dimension */
+  /* height: 10%; */
+  height: 160px;
+  margin: 0 2%;
+  /*border: 2px solid red;*/
+}
+
+/* margin, padding, and border dimensions need to
+be added to width when calculating how many fit in one row */
+
+.gallery-inclass {
+  width: 900px;
+  margin: 0 auto;
+  padding: 10px;
+  font-size: 0;
+}
+
+.gallery-item-inclass {
+  display: inline-block;
+  font-size: 16px;
+  width: 205px;
+  height: 205px;
+  margin: 0 10px;
+}
+
+/* 205/4 (205 entre 4)= 225 px dimensions of */

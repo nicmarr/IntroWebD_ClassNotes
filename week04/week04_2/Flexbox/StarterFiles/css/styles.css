@@ -1,0 +1,118 @@
+/* Display flex is applied to the parent element , aka the thing that contains the line 
+ (TERMINA LA NOTA PLS de todos los signficados de los elementos!!!). */
+
+ *{
+    box-sizing: border-box;
+ }
+
+ body {
+    margin: 0;
+    /* para que todo abarque la pagina, el margen es lo que abarca la pagina, modificalo como quieras pero para que abarque toda la pagina como lo hemos
+    estado haciedno es por dejando 0 en margen. */
+ }
+
+ img {
+    width: 100%;
+    height: auto;
+ }
+
+ /* ------PARENT/CONTAINER/THE THING THAT DISPLAY FLEX!!!--------- */
+
+ /* 
+ - Display flex is applied to the parent element, aka the thing that contains the items you want to stack.
+ - Flex direction defaults to row
+ - Flex-wrap defaults to nowrap which mean all items within will squish onto one line/row
+ - Justify Content - applies to the container/element that displays flex [ main axis ]
+ - Align items - applies to the container/element that displays flex [ cross axis ]
+ - align-items defaults to stretch (which fills the parent container height, 
+   unless the flex-items (children) have a defined height, then height wins
+*/
+
+/* base classes */
+.container {
+    /* display flex hace que se vea como un stack horizontal, el html original 
+    lo hacia ver en filas verticales. el default flex lo hace horixontal, sin embargo se puede modificar.*/
+    display: flex;
+    flex-direction: row;
+    /* tambien existe flex-direction: row-reverse; (o column), pruebalos! */
+    flex-wrap: wrap;
+    /* if you want your items to wrap /stack onto a new
+    line when they run our of space
+    you have to saw flex-wrap: wrap;
+    default behaviour is ton sqush each item to fit one new
+    row. */
+    border: 10px solid violet;
+    background-color: rgb(84, 104, 217);
+    min-height: 400px;
+}
+
+.item {
+    /* este es lo que modifica a los items dentro de cada <div class="item"> ... (lo que sea que este escrito aqui) </div> del html!! */
+    width: 21%;
+    height: 300px;
+    border: 2px solid cornflowerblue;
+    background-color: rgba(0, 0, 255, 0.3);
+}
+
+/* variations using atomic css */
+
+.center {
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+}
+
+.justify-start {
+    justify-content: flex-start;
+}
+
+.justify-end {
+    justify-content: flex-end;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.justify-around {
+    justify-content: space-around;
+}
+
+.justify-even {
+    justify-content: center;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+/* align items get applied to the cross axis */
+
+.align-start {
+    align-items: flex-start;
+}
+
+.align-end {
+    align-items: flex-end;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.align-stretch {
+    align-items: stretch;
+}
+
+.align-stretch >* {
+    /* any element that is a direct descendant of an elelemnt or parent that
+    has the class aslinged stretched.*/
+    height: auto;
+}
+
+/* muestra de ejemplo de que puedes romper un patron, checa el justify evenly, Align Center, Align Self (CUADRITO 2)
+para que veas como se puede romper el patron con este class. */
+.align-self {
+    align-self: stretch;
+    height: auto;
+}
