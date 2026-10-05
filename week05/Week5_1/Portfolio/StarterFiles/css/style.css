@@ -1,0 +1,238 @@
+/* global styles first*/
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+/* NAVIGATION */
+
+nav {
+    z-index: 100000;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background-color: #333;
+}
+
+nav li {
+    display: inline-block;
+    position: relative;
+    /* posiiton relative bc the parent needs to be positioned relative */
+}
+
+nav a {
+    display: block;
+    padding: 1rem 1.5rem;
+    color: chartreuse;
+    text-decoration: none;
+    transition: background-color 0.25s ease;
+}
+
+nav a:hover {
+    background-color: green;
+}
+
+/* SUB NAVIGATION */
+nav ul li ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 14rem;
+    background-color: #ccc;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+}
+
+nav li:hover ul {
+    display: block;
+    z-index: 10000000;
+}
+
+nav li li {
+    display: block;
+}
+
+nav li li a {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.95rem;
+}
+/* JUMBOTRON */
+
+.hero {
+    width: 100vw;
+    max-height: 100vh;
+    overflow: hidden;
+    position: relative;
+    /* position relative porque queremos que los elementos hijos 
+    se posicionen en relación con este contenedor */
+    margin-bottom: 2rem;
+}
+
+.hero article {
+    position: absolute;
+    bottom: 20%;
+    right: 0;
+    width: 50%;
+    padding: 2%;
+    color: #fff;
+    background: linear-gradient(
+     to right, rgba(30, 87, 153, 100%) 0%,
+     rgb(30, 153, 50)50%,
+     rgba(125, 185, 232, 0)100%);
+  /* ceca css gradient generator de w3 schools en google
+  para ver diferentes angulos de gradients que puedes usar */
+}
+
+button,
+a.info {
+    display: inline-block;
+    width: 10rem;
+    padding: 10px 20px;
+    border: 2px solid black;
+    border-radius: 10px;
+    color: white;
+    background-color: #333;
+    text-transform: uppercase;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    /* the transition gets defined on the RESTING STATE */
+    transition: all 1s ease;
+    /* este de transicion es para la animacion del clickear!!
+      ESTO DE AQUI ABAJO SON OTROS CAMBIOS   
+      transition: color 1s ease,
+      background-color 1s ease; */
+}
+
+button:hover,
+a.info:hover {
+    color: #333;
+    background-color: rgb(4, 255, 188);
+    /* ESTO ES UN EFECTO VISUAL AL MOVER EL MOUSE SOBRE EL BOTON, CHECALO! */
+}
+
+/* GALLERY */
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.thumb {
+    /* valores de lo que significa cada numero en flex: 0 0 30%
+    1. flex-grow: 0 (no crecerá)
+    2. flex-shrink: 0 (no se encogerá)
+    3. flex-basis: 30% (width) (tomará el 30% del contenedor padre) */
+    flex: 0 0 30%;
+    margin: 1.5rem auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.mask {
+    /* pin all 4 edges to the parents edges */
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  
+    /* center the content of both axis */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0; /* esto es para la animacion que haremos, el elemento estara oculto hasta que pasemos el mouse por la foto */
+    transition: all 1s ease;
+    background-color: rgba(225, 225, 225, 0.5);
+}
+
+.mask h2{
+    margin: 0;
+    /* para que no se vea uneven por el margen default que h2 contiene,
+    quitalo para ver la diferencia y vuelve a poner esto*/
+}
+
+/* nota que recien capte: hover significa que cuando el 
+mouse pasa sobre el elementon (boton), se aplica el estilo */
+.mask p {
+    font-style: italic;
+}
+
+.thumb:hover .mask {
+    opacity: 1; /* esto es para la animacion de efecto, aqui al pasar el mouse por la foto, los divs ya seran visibles porque esto lo vuelve visible despues de haber puesto el 0 opacity anteriormente */
+}
+
+/* define the img resting state explicitly so that we 
+have properties to change */
+.thumb img {
+     /* these look like they normally would, but we need to define the transforms starting state so we have something to animate from */
+    transform: scale(1) rotate(0);
+    transition: all 1s ease;
+}
+
+.thumb:hover img {
+    transform: scale(1.5) rotate(-20deg);
+}
+
+.thumb .mask h2,
+.thumb .mask p,
+.thumb .mask a {
+    opacity: 0;
+    transform: scale(0);
+    transition: all 1s ease-in-out;
+}
+
+.thumb:hover .mask h2,
+.thumb:hover .mask p,
+.thumb:hover .mask a {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* MEDIA QUARTERS (TAMAÑOS DE WEBSITE 
+SEGUN DISPOTIVIOS (LAPTOP, TABLET, CEL)*/
+/* Media Queries (conditional statements that apply style overrides */
+/* Desktop First styles = default style sheet is for large screens, override big => small */
+
+/* PARA TABLET */
+ @media screen and (width <= 1024px) {
+    /* <= significa menor o igual a */
+    .hero article {
+        width: 80%;
+        bottom: 10%;
+    }
+
+    .thumb {
+        flex-basis: 45%;   
+    }
+ }
+
+ /* para celular */
+ @media screen and (width <= 768px) {
+    .hero article {
+        width: 100%;
+        bottom: 0;
+        text-align: center;
+    }
+
+    .container {
+        flex-direction: row;   
+        padding: 0.75rem;
+    }
+ }

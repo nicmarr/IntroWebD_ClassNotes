@@ -1,0 +1,121 @@
+:root {
+    --ink: #16181d;
+    --bar: #14161b;
+    --bar-2: #21252e;
+    --paper: #f6f6f6;
+    --muted: #6b7280;
+    --line: #e4e7ec;
+    --accent: #c1440e;
+    --radius: 10 px;
+    --speed: 0.2s;
+    --font: 'helvetica Neue' arial sans-serif;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    font-family: var(--font);
+    color: var(--ink);
+    background-color: var(--paper);
+    line-height: 1.55;
+}
+
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index:100;
+    background-color: var(--bar);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.bar {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.25 rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 1rem 0;
+    color: #ffff;
+    font-weight: 700;
+    letter-spacing: 0.02rem;
+    /* el space entre letras (para fonts jej) */
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.logo-mark {
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    background-color: var(--accent);
+    border-radius: var(--radius);
+    /* always apply transtitions to the default style before any .... */
+    transition: color var(--speed) ease, background-color var(--speed) ease;
+    /* how you list more than one value to twin. */
+}
+
+.menu-bar a:hover, 
+.menu-bar a:focus-visible {
+    /* cuando queramos hacer una linea de code con dos elementos como aqui con ambos
+     ".menu-bar", tenemos que poner una coma entre ambos (o todos los que queramos hacer! */
+    color: #ffff;
+    background-color: var(--bar-2);
+}
+
+.menu-bar a.is-current {
+    /* solo seleccionamos las clases con a */
+    color: #ffff;
+    box-shadow: inset 0 -2px 0 var(--accent);
+}
+
+.menu-bar a.cta {
+    margin-left: 0.5rem;
+    padding: 0.6rem 1.1rem;
+    color: #ffff;
+    background-color: var(--accent);
+}
+
+.menu-bar a.cta:hover {
+    background-color: #a53a0c;
+}
+
+.caret {
+    display: inline-block;
+    width: 0.38rem;
+    margin-left: 0.4rem;
+    vertical-align: 0.12rem;
+    border-right: 2px solid currentColor;
+    /* "currentColor" inhertis the current font color */
+    transform: rotate(45deg);
+    transition: transform var(--speed) ease;
+}
+
+/* the bar itself */
+.menu-bar {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    /* estas dos lineas se las aplicas siempre al Ul (? */
+
+    display: flex;
+    align-items: center;
+    
+}
+
+.has-menu:hover .caret,
+.has-menu:focus-within .caret {
+    transform: rotate(-135deg);
+
+}

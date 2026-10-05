@@ -3,6 +3,7 @@
 
  *{
     box-sizing: border-box;
+    /* PARA NO TENER QUE HACER MATH */
  }
 
  body {
@@ -115,4 +116,85 @@ para que veas como se puede romper el patron con este class. */
 .align-self {
     align-self: stretch;
     height: auto;
+}
+
+/* classic layout example */
+header {
+    display: flex; 
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 5%;
+    min-height: 100px;
+    background-color: rgb(102, 206, 171);
+}
+
+/* this ".wrapper" is a box around the 2 items we want
+    to stack next to one another*/
+.wrapper {
+    display: flex;
+    flex-direction: row;
+    max-width: 1200px;
+    margin: 0 auto;      /* este margin 0 auto es para centrear */
+}
+
+.grid-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    background-color: darkcyan;
+}
+
+.grid-item {
+    width: 23%;
+    /* este es el que hace que las imagenes se vean en dos filas horizontales, 
+    quitalas para verlas verticales */
+}
+
+.secondary-nav {
+    min-width: 25%;
+    background-color: rgb(127, 236, 255);
+}
+
+.menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* NOTA AQUI .... */
+.menu li {
+    border-bottom: 1px solid gray;
+}
+
+.menu span {
+    padding: 1rem;
+    font-size: 2rem;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.menu a:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    /* para hacer el efecto del click en los botones que se vea oscurito al mover el mouse */
+}
+
+footer {
+    min-height: 100px;
+    background-color: blue;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    /* para que los icons del footer se vayan del otro lado de la pagina! */
+    color: white;
+    padding: 5%;
 }
