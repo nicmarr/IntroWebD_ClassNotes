@@ -18,7 +18,7 @@ html {
 }
 
 /* NAVIGATION STYLES */
-/* NOTA AQUI*/
+/* We are using decendant selectors instead of class names here */
 header {
     width: 80%;
     padding: 0 10%;
