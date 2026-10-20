@@ -9,6 +9,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Kaushan+Script&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+   <!-- <script>
+        function toggleShow() {
+        var menu = document.getElementById('menu')
+        menu.classList.toggle('show')
+      }
+    </script> -->
   </head>
 
   <body>
@@ -16,6 +22,7 @@
         <div class="Isotype">
             <img src="./img/landing_page/Isotipo.png" alt="Isotype">
         </div>
+        <!-- <span class="mobile-menu" onclick="toggleshow()">&#8801;</span> -->
         <nav>
             <ul class="menu">
                 <li>
@@ -34,7 +41,7 @@
 
     <main class="container">
         <section class="hero">
-            <video width="2560" height="1440" autoplay muted>
+            <video loop width="2560" height="1440" autoplay muted>
                 <source src="./img/landing_page/hero_video.MP4" type="video/mp4">
             </video>
         </section>
@@ -59,6 +66,9 @@
         </section>
 
          <!-- FEATURED PROJECTS SECTION -->
+        <section class="TextFeaturedProjects">
+            <h2> SELECTED WORKS, REIMAGINED... </h2>
+        </section>
         <section class="FeaturedProjects">
             <div class="FProjects">
                 <img src="./img/landing_page/Casa_Luna.jpg" alt="casa luna">
@@ -69,9 +79,9 @@
                  </article>
             </div>
 
-            <div>
+            <div class="FProjects">
                  <img src="./img/landing_page/Terraza_Brisa.jpg" alt="terraza brisa">
-                  <article>
+                  <article class="desc">
                     <h2>TERRAZA BRISA</h2>
                     <p>
                         Mediterranean-inspired retreat centered around
