@@ -19,6 +19,9 @@ header {
     align-items: center;
     background-color: rgb(220, 214, 200);
     padding: 1rem 5rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 /* NAVIGATION HEADER */
@@ -154,7 +157,7 @@ nav li li a {
     align-items: center;
     opacity: 0;
     transition: all 1s ease;
-    background-color: rgba(225, 225, 225, 0.758);
+    background-color: rgba(225, 225, 225, 0.8);
 }
 
 .desc h2 {
@@ -196,6 +199,62 @@ footer {
 .footer_socials {
     width: 300px;
 }
+
+/* PROJECTS SECTIONS */
+
+main.container {
+    background: url('../img/residential/fondoprojects.jpg');
+    min-height: 100vh;
+    display: flow-root;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.ProjectsIntroduction {
+    text-align: center;
+    background-color: transparent;
+    padding: 10rem 7rem 5rem;
+    color: rgb(43, 53, 57);
+}
+
+.ResidentialProjects {
+    width: 100%;
+    background-color: transparent;
+    padding: 4rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.ProjectsPhotos {
+    flex: 0 0 40%;
+    margin: 1.5rem auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.ProjectsPhotos:hover .desc {
+    opacity: 1;
+}
+
+.ProjectsPhotos img {
+    transform: scale(1);
+    transition: all 1s ease;
+}
+
+.ProjectsPhotos .desc h2,
+.ProjectsPhotos .desc p {
+    color: rgb(43, 53, 57);
+    margin: 0 auto 1rem;
+    max-width: 400px;
+    text-align: center;
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* ABOUT US SECTION */
 
 /* MEDIA QUERIES SECTION */
 
@@ -256,6 +315,20 @@ footer {
         margin: 1rem 0;
     }
 
+    .ProjectsPhotos {
+        flex-basis: 100%;
+        margin: 1rem 0;
+    }
+
+    .ProjectsPhotos .desc,
+    .FProjects .desc {
+        position: static;
+        opacity: 1;
+        background-color: transparent;
+        padding: 1rem;
+        transition: none;
+    }
+
     footer {
         flex-direction: row;
         gap: 1rem;
@@ -266,6 +339,7 @@ footer {
 
     .footer_info {
         text-align: left;
+        font-size: 0.75rem;
     }
 
     .footer_socials {
@@ -275,5 +349,3 @@ footer {
     }
 
 } 
-
-
