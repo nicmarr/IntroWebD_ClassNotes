@@ -1,0 +1,37 @@
+/* We write this together in class. */
+/* imports on the top, this is where we import other stylesheets or fonts*/
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&display=swap');
+
+/* base styles converted to vars */
+/* we define our bars in the root selector 
+which makes them usuable in every tag in html*/
+
+:root {
+    --c-bg:  #e2e8f0;
+    --c-text:  #475569;
+    --c-bg-tan:  #1e293b;
+    --c-bg-btn-hover: #64748b;
+    --c-btn-text: #f8fafc;
+
+    --ff-heading: "Press Start 2P", system-ui;
+    --ff-body: "Share Tech Mono", monospace;
+}
+
+/* alternate themes variables - we can swap them out by changing
+the ID of the body tag */
+
+#green {
+  --c-bg: #a7f3d0;
+  --c-text: #065f46;
+  --c-bg-btn: #059669;
+  --c-bg-btn-hover: #065f46;
+  --c-btn-text: #ecfdf5;
+}
+
+#blue {
+  --c-bg: #1e3a8a;
+  --c-text: #dbeafe;
+  --c-bg-btn: #3b82f6;
+  --c-bg-btn-hover: #1d4ed8;
+  --c-btn-text: #eff6ff;
+}
