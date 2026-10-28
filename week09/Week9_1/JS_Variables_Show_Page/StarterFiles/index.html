@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Show Page</title>
+    <link rel="stylesheet" href="css/style.css" />
+
+  </head>
+
+  <body>
+    <!-- The markup and the CSS are done. Every empty element below has an id,
+         and by the end of class JavaScript will have filled all of them in. -->
+
+    <article class="ticket">
+      <header class="poster">
+        <p class="presents">The Fillmore East presents</p>
+        <h1 class="billing" id="billing"> THIS IS INNER HTML OR TEXT CONTENT</h1>
+        <p class="where-when" id="where-when"></p>
+      </header>
+
+      <p class="status" id="status"> status</p>
+
+      <section class="order">
+        <h2>Your order</h2>
+
+        <p class="line" id="price-line">priceLine</p>
+        <p class="line" id="fee-line">feeLine</p>
+        <p class="line discount" id="discount-line">discountLine</p>
+
+        <p class="total">
+          <span>Total</span>
+          <strong id="total">total</strong>
+        </p>
+
+        <p class="fine-print" id="fine-print">finePrint</p>
+      </section>
+    </article>
+
+    <!-- The script goes at the END of the body, after the elements it talks
+         to. Put it in the <head> and it runs before they exist. -->
+    <script>
+      /*========================================
+       script es para javascript, style para css 
+
+       1. the facts about the show
+       3 types and you can see which is which by looking 
+       quote "" = string
+       a bare number = number
+       the value is either true or false, or computes to true/false = boolean. 
+
+       semicolons en java ya no son tan necesarios, a menos de casos muy especificos
+       ==========================================*/
+       // this is declaring a variabe without assign a value
+       //this like saying hey JS, make a slot in memomry calles myVArName, it does not hold anything YET
+       // var myVarName; 
+
+       // i can also declare and a assign a value
+       // var myOtherVar = "Nicole"
+
+       const headliner = 'Bad Moon Rising' // string (const does not tell us anything about the data type)
+       const support = 'The Paper Cuts' // string
+       const venue = 'The Filmore East' // string
+       const doors = 'Friday 13 Nov, doors 8pm' // string (ESTOS QUE SON STRINGS, SON LOS QUE APLICAN CON EL STRINGS ONLY WITH STRINGS (''))
+
+       const ticketPrice = 18.5 // NO PONGAS '' CON NUMEROS EN JAVA PORQUE LOS TOMA COMO OPERACION MATEMATICA
+       // This above, is a number, a float (decimal point)
+       const capacity = 250 // number (an integer -- whole number)
+       const ticketsSold = 234 // number
+       const serviceRateFee = 0.12 // number which is actually 12% for our calculations
+       const studentPrice = 5 // number of dollars off
+       const isStudent = true // this is a boolean (yed or no question, true or false)
+
+       //This the one value that genuinely changes, so its a 'let'
+       const quantity = 3
+
+       /* ==============================================================
+       2. BOOLEANS: WE WORK OUT RATHER THAN TYPE
+       A comparission IS a boolean, so no need to decide ourselves
+       ================================================================= */
+
+       const ticketsLeft = capacity - ticketsSold // computes to number 7
+       // console.log(ticketsLeft)
+       const isSoldOut = ticketsLeft === 0 // false
+       const isAlmostSoldOut = ticketsLeft < 10 // true
+
+       /* ==============================================================
+       3. THE MONEY 
+       each line will build on the one above it
+       ================================================================= */
+
+       const subtotal = ticketPrice * quantity // con * es como multiplicamos, if we consoloe.log it it should be 55.5
+       // console.log(subtotal)
+       const serviceFee = subtotal * serviceRateFee // 6.66
+       // discount is a boolean, its value is computed with a ternary whch is a good conditional statement
+       // if (Student == true) SI HACEMOS ESTO, it will be true for 1, 'true'
+
+       /*
+       if (Student === true) {
+        discount = studentPrice
+       } else {
+        discount = 0
+       }*/
+
+       // ternary condition ? what to assign/do if true : what to assign/do if false
+       const discount = isStudent ? studentPrice : 0 // : es para decir otherwise (reads as)
+       const total = subtotal + serviceFee - discount // should compute 51.16
+
+       /* ========================================================
+       4. THE WORDS
+       backtiks `` let us frop a variable value straight into a sentence
+       with ${''}
+       single '' quotes or double quotes WON'T ALLOW THIS
+       TEMPLATE LITERALS
+       ======================================================== */
+
+       // if support does not exist (si arriba supongamos que no pusimos nada) pones || para que lo salte
+
+       const supportName = support || 'support TBA' // this catches an ampty string or an empty/nonexistent variable
+       const billing = `${headliner.toUpperCase()} + ${supportName}` 
+       const whereWhen = `${venue} • ${doors}`
+
+       console.log(billing, whereWhen)
+       const priceLine = `${quantity} x ${ticketPrice.toFixed(2)}`
+
+       console.log(priceLine)
+
+       const feeLine = `Service Fee - $${serviceFee.toFixed(2)}`
+       const discountLine = isStudent
+          ? `Student Discount - $${discount.toFixed(2)}` 
+          : ''
+      const totalLine = `$${total.toFixed(2)}`
+
+      /* ========================================================
+      CHOOSING A MESSAGE
+      if/else is/else, all you need to know is the frst true branch
+      wins and the rest are skipped
+      ======================================================== */
+
+      let status // this is a let because we dont imediately assign a value because we have not computed it yet
+
+      if (isSoldOut) {
+        status = 'Sold out - join the waiting list'
+      } else if (isAlmostSoldOut) {
+        status = `Hurry! Onlyy ${ticketsLeft} tickets left.`
+      } else {
+        status = 'Tickets available'
+      }
+
+      const idLine = isStudent ? 'Bring your Student ID to the door' : '' // si no eres estudiante (:'') para que no te aparezca el mensaje
+      const finePrint = `All sales final. ${idLine} ${ticketsLeft} of ${capacity} tickets remaining.`
+
+
+
+      /* ========================================================
+      6. ON THE PAGE
+      one line is borrowed from next week: find and element by is selctor (ID)
+      and replace the text inside it. en HTML id are great ti addig unique styling to an element
+      ======================================================== */
+
+    document.querySelector('#billing').textContent = billing //grabs the element of the page (html) that matches the id of billing
+     // console.log(document.querySelector('#where-when'))
+    document.querySelector('#where-when').textContent = whereWhen
+
+    // status
+    document.querySelector('#status').textContent = status
+    // price line
+    document.querySelector('#price-line').textContent = priceLine
+    // fee line
+    document.querySelector('#fee-line').textContent = feeLine
+    //discount line
+    document.querySelector('#discount-line').textContent =discountLine
+    // total
+    document.querySelector('#total').textContent = total
+    // fine print
+    document.querySelector('#fine-print').textContent = finePrint
+
+    </script>
+  </body>
+</html>
