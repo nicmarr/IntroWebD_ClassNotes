@@ -9,21 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Kaushan+Script&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
-   <!-- <script>
-        function toggleShow() {
-        var menu = document.getElementById('menu')
-        menu.classList.toggle('show')
-      }
-    </script> -->
-    <script>
-    const menuButton = document.querySelector(".menu-toggle");
-    const siteMenu = document.querySelector("#site-menu");
-
-    menuButton.addEventListener("click", () => {
-        const isOpen = siteMenu.classList.toggle("is-open");
-        menuButton.setAttribute("aria-expanded", isOpen);
-    });
-    </script>
+   
   </head>
 
   <body>
@@ -117,4 +103,20 @@
             <img src="./img/Index/nova_socials.png" alt="nova_social_media">
         </div>
     </footer>
+
+    <!-- <script>
+        function toggleShow() {
+        var menu = document.getElementById('menu')
+        menu.classList.toggle('show')
+      }
+    </script> -->
+    <script>
+    const menuButton = document.querySelector(".menu-toggle");
+    const siteMenu = document.querySelector("#site-menu");
+
+    menuButton.addEventListener("click", () => {
+        const isOpen = siteMenu.classList.toggle("is-open");
+        menuButton.setAttribute("aria-expanded", isOpen);
+    });
+    </script>
   </body>

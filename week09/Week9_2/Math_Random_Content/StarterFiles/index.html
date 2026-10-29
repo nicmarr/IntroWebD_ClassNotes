@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Show Page</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <!-- Where Tuesday ended, plus one new empty element: the lineup list.
+         If you kept your own file from Tuesday, use that one instead and just
+         copy the <section class="lineup-wrap"> block below into it. -->
+
+    <article class="ticket">
+      <header class="poster">
+        <p class="presents">The Fillmore East presents</p>
+        <h1 class="billing" id="billing"></h1>
+        <p class="where-when" id="where-when"></p>
+      </header>
+
+      <p class="status" id="status"></p>
+
+      <section class="order">
+        <h2>Your order</h2>
+
+        <p class="line" id="price-line"></p>
+        <p class="line" id="fee-line"></p>
+        <p class="line discount" id="discount-line"></p>
+
+        <p class="total">
+          <span>Total</span>
+          <strong id="total"></strong>
+        </p>
+
+        <p class="fine-print" id="fine-print"></p>
+      </section>
+
+      <!-- NEW today -->
+      <section class="lineup-wrap">
+        <h2>Running order</h2>
+        <ul class="lineup" id="lineup"></ul>
+        <p class="tagline" id="tagline"></p>
+      </section>
+    </article>
+
+    <script>
+      /* ---------- Tuesday's code, so nobody is stuck ----------
+         Everything below is where we finished last class. Today we replace
+         the hard-coded facts at the top with randomly chosen ones. */
+
+      let myVar;
+      const headliner = 'Bad Moon Rising'
+      const support = 'The Paper Cuts'
+      const venue = 'The Fillmore East'
+      const doors = 'Fri 13 Nov, doors 8pm'
+
+      const ticketPrice = 18.5
+      const capacity = 250
+      const ticketsSold = 243
+      const serviceFeeRate = 0.12
+      const studentPrice = 5
+
+      const isStudent = true
+      // true and 'true' are not equal
+      // two equals could compute to the same thing, so carefull
+      let quantity = 3
+
+      const ticketsLeft = capacity - ticketsSold
+      const isSoldOut = ticketsLeft === 0 // '0' false is also true here is we use == 
+                                         // always use === unless you have a solid reasin behind
+      const isAlmostSoldOut = ticketsLeft < 10
+
+      const subtotal = ticketPrice * quantity
+      const serviceFee = subtotal * serviceFeeRate 
+      // ternary - fancy shorthand if else condition ? what to return if true : what to return if false 
+      const discount = isStudent ? studentPrice : 0
+      const total = subtotal + serviceFee - discount
+
+      //template literals, or template strings (some people call them either both ways)
+      const billing = `${headliner.toUpperCase()} + ${support}`
+      const whereWhen = `${venue} · ${doors}`
+
+
+      let status
+
+      if (isSoldOut) {
+        status = 'Sold out — join the waiting list'
+      } else if (isAlmostSoldOut) {
+        status = `Hurry — only ${ticketsLeft} tickets left`
+      } else {
+        status = 'Tickets available'
+      }
+
+      document.querySelector('#billing').textContent = billing
+      document.querySelector('#where-when').textContent = whereWhen
+      document.querySelector('#status').textContent = status
+      document.querySelector('#price-line').textContent = `${quantity} × $${ticketPrice.toFixed(2)}  —  $${subtotal.toFixed(2)}`
+      document.querySelector('#fee-line').textContent = `Service fee  —  $${serviceFee.toFixed(2)}`
+      document.querySelector('#discount-line').textContent = isStudent
+        ? `Student discount  —  −$${discount.toFixed(2)}`
+        : ''
+      document.querySelector('#total').textContent = `$${total.toFixed(2)}`
+      document.querySelector('#fine-print').textContent = `All sales final. ${ticketsLeft} of ${capacity} tickets remaining.`
+
+      /* ---------- Today's code goes below this line ---------- */
+
+      /* =======================================================
+      1. ARRAYS - one variable holding a list of values
+      Square brackets, comma separated values within
+      ======================================================= */
+
+      const headliners = [
+        'Bad Moon Rising',
+        'Velvet Static',
+        'Dial Tone',
+        'Mountain Time',
+        'Kerosene Club',
+        'The Paper Cuts',
+      ]
+      // headliners = multiple items in list (plurals) headliner (singular)
+
+      const supports =[
+        'Low Ceiling',
+        'The Ferry lights',
+        'Tiny Mirrors',
+        'Garden State Radio',
+      ]
+
+      const djs = ['DJ Shortwave', 'DJ Halfmoon', 'DJ FFerry']
+
+      const venues = [
+        'The Filmore East',
+        'Rough Trade',
+        'Brooklyn Steel',
+        'Market Hotel',
+      ]
+
+      const nights = ['Thurs 12 Nov', 'Fri 13 Nov', 'Sat 14 Nov']
+
+      const taglines = [
+        'Strictly 18+. No re-entry',
+        'Late set. Bring earplugs',
+        'All ages until 10 pm',
+        'Sold Out 3 times running',
+      ]
+
+       /* =======================================================
+      2. PICKING ONE AT RANDOM
+          Math.random ()
+          gives ys a float from 0 up to (but not including) 1
+          multiply by the lenght, floor it, and you get a valid index number
+      ======================================================= */
+
+      console.log(headliners.lenght) // gives us a cpunt of items in the array
+      console.log(headliners[5]) // NOTA AQUI
+      console.log(headliners[headliners.lenght - 1]) // NOTA AQUI
+
+
+      console.log(Math.random())
+
+      //sometimes we want to pick netween 0 and 1 for a true false situation
+      function randomTrueFalse(){
+        // any variable declared inside of {} is scoped
+        // this var and its name and usuability live and die within this function
+        return rn
+      }
+
+      // NOTAS
+
+      let isOn
+      const randomValue = randomTrueFalse()
+      // console.log(isOn)
+
+      if (randomValue === 0){
+        isON = false
+      } else {
+        isON = true
+      }
+
+      /* when checking TF, it could be 0 or 1 , it could also be that variable HAS a value or it doesn't
+      if (randomValue) {
+        console.log ('true')
+      } else {
+        console.log ('false')
+      }
+        */
+
+        console.log(isOn)
+        //another helper function to get a random number bewteen 0 and x
+        // we know the min is 0, but we need to pass in a max var/value/PARAMETER/ARGUMENT
+
+        function randNumToMax(max) {
+          const rn = Math.random () * max
+          console.log(rn)
+        }
+
+        // termina todo lo demas luego
+
+    
+
+    </script>
+  </body>
+</html>
