@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Show Page</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <article class="ticket">
+     <header class="poster">
+       <p class="presents">Your daily BTS song!</p>
+       <h1 class="billing" id="album-title"></h1>
+       <p class="where-when" id="album-info"></p>
+     </header>
+
+      <p class="status" id="status"></p>
+
+      <section class="order">
+        <h2>Your listening stats!</h2>
+
+        <p class="line" id="duration-line"></p>
+        <p class="line" id="sessions-line"></p>
+        <p class="line discount" id="album-type"></p>
+
+        <p class="total">
+          <span>Total listening time</span>
+          <strong id="total-duration"></strong>
+        </p>
+
+        <p class="fine-print" id="fine-print"></p>
+      </section>
+
+      <section class="lineup-wrap">
+        <h2>Tracklist</h2>
+        <ul class="lineup" id="tracklist"></ul>
+        <p class="tagline" id="album-tagline"></p>
+      </section> 
+    </article>
+
+    <script>
+    /* =======================================================
+      1. ARRAYS 
+    ======================================================= */
+        const albums = [
+            'Love Yourself: Her',
+            'Love Yourself: Tear',
+            'Arirang',
+            'Wings',
+        ]
+
+        const years = [2017, 2028, 2026, 2016]
+
+        const durations = [30.3, 44.2, 41.1, 53.7]
+
+        const tracklists = [
+            [
+            'Intro : Serendipity',
+            'DNA',
+            'Best of Me',
+            'Dimple',
+            'Pied Piper',
+            'MIC Drop',
+            'Go Go',
+            'Skit : Billboard Music Awards Speech',
+            'Outro : Her'
+            ],
+            [
+            'Intro : Singularity',
+            'Fake Love',
+            'The Truth Untold',
+            '134340',
+            'Paradise',
+            'Love Maze',
+            'Magic Shop',
+            'Airplane pt.2',
+            'Anpanman',
+            'So What',
+            'Outro : Tear'
+            ],
+            [
+                'Body to Body',
+                'Hooligan',
+                'Aliens',
+                'FYA',
+                '2.0',
+                'SWIM',
+                'Merry-Go-Round',
+                'Normal',
+                'Like Animals',
+                'One more night',
+            ],
+            [
+                'Intro : Boy Meets Evil',
+                'Blood Sweat & Tears',
+                'Begin',
+                'Lie',
+                'Stigma',
+                'First Love',
+                'Reflection',
+                'MAMA',
+                'Awake',
+                'Lost',
+                'BTS Cypher 4',
+                'Am I Wrong',
+                '21st Century Girls',
+                '2!3!',
+                'Interlude : Wings',
+            ]
+        ]
+        
+        const moods = [
+            'nostalgic',
+            'energetic',
+            'calm',
+            'romantic',
+        ]
+
+        const taglines = [
+            'A journey of self-love and acceptance.',
+            'A deep dive into the complexities of love and heartbreak.',
+            'A fusion of traditional Korean sounds with modern pop.',
+            'An exploration of personal growth and resilience.',
+        ]
+
+        const accents = [
+            'pink',
+            'blue',
+            'green',
+            'purple',
+        ]
+    /* =======================================================
+      2. PICKING ONE AT RANDOM
+    ======================================================= */
+    function pickRandom(list) {
+      const index = Math.floor(Math.random() * list.length)
+      return list[index]
+    }
+
+    function randomBetween(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min
+    }
+
+    /* =======================================================
+      3. A DIFFERENT ALBUM EVERY RELOAD
+    ======================================================= */
+
+    const albumIndex = Math.floor(Math.random() * albums.length)
+
+    const album = albums[albumIndex]
+    const year = years[albumIndex]
+    const duration = durations[albumIndex]
+    const tracks = tracklists[albumIndex]
+    const mood = pickRandom(moods)
+
+    const listeningSessions = randomBetween(1, 3)
+
+    /* =======================================================
+      4. CALCULATIONS AND BOOLEANS
+    ======================================================= */
+    
+    // Para calcular el tiempo total de escucha!
+    const totalDuration = duration * listeningSessions
+    const averageTrackDuration = duration / tracks.length
+
+    // Dos booleans basados en comparaciones
+    const isLongAlbum = duration > 60
+    const isMultipleSessions = listeningSessions > 1
+
+    // Un ternary que elige un valor 
+    const albumType = isLongAlbum ? 'Long album' : 'Shorter album'
+    const sessionLabel = isMultipleSessions
+      ? 'listening sessions'
+      : 'listening session'
+
+ /* =======================================================
+      5.  THE MATH OBJECT, WITH SOMETHING TO DO
+    ======================================================= */
+
+    let status
+      if (listeningSessions === 1) {
+      status = 'Love this song!'
+        } else if (listeningSessions === 2) {
+      status = 'Oh, you are enjoying the album!'
+        } else {
+      status = 'A full listening experience!'
+    }
+
+    //Info del album
+    const albumInfo = `${year} · ${tracks.length} tracks · ${mood} mood`
+    const finePrint = `You're exploring ${album} with ${listeningSessions} ${sessionLabel}.`
+    const albumTagline = pickRandom(taglines)
+
+     /* =======================================================
+      6.  A FOR LOOP OVER THE TRACKLIST
+    ======================================================= */
+
+    let tracklistHTML = ''
+
+    for (let i = 0; i < tracks.length; i++) {
+    const trackNumber = i + 1
+    const stripe = i % 2 === 0 ? 'stripe' : ''
+    tracklistHTML += `
+    <li class="${stripe}">
+      <span class="time">${trackNumber}</span>
+      ${tracks[i]}
+    </li>
+     `
+    }
+
+    /* =======================================================
+      7.  ON THE PAGE
+    ======================================================= */
+
+    document.querySelector('#album-title').textContent = album
+    document.querySelector('#album-info').textContent = albumInfo
+    document.querySelector('#status').textContent = status
+    document.querySelector('#duration-line').textContent =
+       `One listen — ${duration.toFixed(2)} minutes`
+    document.querySelector('#sessions-line').textContent =
+       `${listeningSessions} ${sessionLabel}`
+    document.querySelector('#album-type').textContent = albumType
+    document.querySelector('#total-duration').textContent =
+       `${totalDuration.toFixed(2)} min`
+    document.querySelector('#fine-print').textContent = finePrint
+    document.querySelector('#album-tagline').textContent = albumTagline
+    document.querySelector('#tracklist').innerHTML = tracklistHTML
+
+    /* =======================================================
+      8.  A RANDOM COLOR SCHEME
+    ======================================================= */
+    document.body.style.setProperty('--accent', pickRandom(accents))
+
+    console.log({
+     album,
+     year,
+     duration,
+     tracks,
+     mood,
+     listeningSessions,
+     totalDuration,
+     averageTrackDuration,
+      isLongAlbum,
+     isMultipleSessions
+   })
+
+    </script>
+  </body>
