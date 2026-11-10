@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BTS Songs!</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <article class="ticket">
+     <header class="poster">
+       <p class="presents">Your daily BTS song!</p>
+       <h1 class="billing" id="album-title"></h1>
+       <p class="where-when" id="album-info"></p>
+     </header>
+
+      <p class="status" id="status"></p>
+
+      <section class="order">
+        <h2>Your listening stats!</h2>
+
+        <p class="line" id="duration-line"></p>
+        <p class="line" id="sessions-line"></p>
+        <p class="line discount" id="album-type"></p>
+
+        <p class="total">
+          <span>Total listening time</span>
+          <strong id="total-duration"></strong>
+        </p>
+
+        <p class="fine-print" id="fine-print"></p>
+      </section>
+
+      <!-- intento de controles interactivos ((nuevo))-->
+      <section class="controls">
+        <div class="qty">
+          <span class="qty-label">Listening sessions</span>
+          <button id="minus" type="button" aria-label="One fewer session"> - </button>
+          <span class="count" id="count"></span>
+          <button id="plus" type="button" aria-label="One more session"> + </button>
+        </div>
+
+        <button class="roll" id="roll" type="button">
+          Give me another album!!
+        </button>
+      </section>
+
+      <section class="lineup-wrap">
+        <h2>Tracklist</h2>
+         <!-- para busqueda de canciones ((nuevo)) -->
+        <div class="search">
+          <label for="song-search">Find a song :D</label>
+          <input
+            id="song-search"
+            type="text"
+            placeholder="Search a BTS song!!"
+          />
+        </div>
+        <ul class="lineup" id="tracklist"></ul>
+        <p class="tagline" id="album-tagline"></p>
+      </section> 
+    </article>
+
+    <script>
+    /* =======================================================
+      1. ARRAYS 
+    ======================================================= */
+        const albums = [
+            'Love Yourself: Her',
+            'Love Yourself: Tear',
+            'Arirang',
+            'Wings',
+        ]
+
+        const years = [2017, 2028, 2026, 2016]
+
+        const durations = [30.3, 44.2, 41.1, 53.7]
+
+        const tracklists = [
+            [
+            'Intro : Serendipity',
+            'DNA',
+            'Best of Me',
+            'Dimple',
+            'Pied Piper',
+            'MIC Drop',
+            'Go Go',
+            'Skit : Billboard Music Awards Speech',
+            'Outro : Her'
+            ],
+            [
+            'Intro : Singularity',
+            'Fake Love',
+            'The Truth Untold',
+            '134340',
+            'Paradise',
+            'Love Maze',
+            'Magic Shop',
+            'Airplane pt.2',
+            'Anpanman',
+            'So What',
+            'Outro : Tear'
+            ],
+            [
+                'Body to Body',
+                'Hooligan',
+                'Aliens',
+                'FYA',
+                '2.0',
+                'SWIM',
+                'Merry-Go-Round',
+                'Normal',
+                'Like Animals',
+                'One more night',
+            ],
+            [
+                'Intro : Boy Meets Evil',
+                'Blood Sweat & Tears',
+                'Begin',
+                'Lie',
+                'Stigma',
+                'First Love',
+                'Reflection',
+                'MAMA',
+                'Awake',
+                'Lost',
+                'BTS Cypher 4',
+                'Am I Wrong',
+                '21st Century Girls',
+                '2!3!',
+                'Interlude : Wings',
+            ]
+        ]
+        
+        const moods = [
+            'nostalgic',
+            'energetic',
+            'calm',
+            'romantic',
+        ]
+
+        const taglines = [
+            'A journey of self-love and acceptance.',
+            'A deep dive into the complexities of love and heartbreak.',
+            'A fusion of traditional Korean sounds with modern pop.',
+            'An exploration of personal growth and resilience.',
+        ]
+
+        const accents = [
+            'pink',
+            'blue',
+            'green',
+            'purple',
+        ]
+    /* =======================================================
+      2. PICKING ONE AT RANDOM
+    ======================================================= */
+    function pickRandom(list) {
+      const index = Math.floor(Math.random() * list.length)
+      return list[index]
+    }
+
+    function randomBetween(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min
+    }
+
+    /* =======================================================
+      3. FROM HERE, MY PAGE CHANGES FROM LAST WEEK BASED ON WHAT WE PRACTICED ON THURS CLASS (STATE)
+      this is a time to use LET
+      putting all of out "state" in one place, ne function that draws it, another to change it
+    ======================================================= */
+
+     let currentAlbumIndex = randomBetween(0, albums.length - 1)
+
+      let listeningSessions = 1
+
+      let searchTerm = ''
+
+      let mood = pickRandom(moods)
+
+      let albumTaglines = pickRandom(taglines)
+
+      let accent = pickRandom(accents)
+
+    /* =======================================================
+      4. CONSTANTS
+    ======================================================= */
+
+    const MIN_SESSIONS = 1
+    const MAX_SESSIONS = 3
+
+ /* =======================================================
+      5.  RENDER
+    ======================================================= */
+
+    function render() {
+        // para obtener la informacion del album actual
+        const album = albums[currentAlbumIndex]
+        const year = years[currentAlbumIndex]
+        const duration = durations[currentAlbumIndex]
+        const tracks = tracklists[currentAlbumIndex]
+
+        // listening time!
+        const totalDuration = duration * listeningSessions
+        const averageTrackDuration = duration / tracks.length
+
+        // booleans
+        const isLongAlbum = duration > 60
+        const isMultipleSessions = listeningSessions > 1
+
+        // ternary operators
+        const albumType = isLongAlbum
+          ? 'Long album'
+          : 'Shorter album'
+        const sessionLabel = isMultipleSessions
+          ? 'listening sessions'
+          : 'listening session'
+
+        // mensaje de status
+        let status
+        if (listeningSessions === 1) {
+          status = 'Love this song!'
+        } else if (listeningSessions === 2) {
+          status = 'Oh, you are enjoying the album!'
+        } else {
+          status = 'A full listening experience!'
+        }
+
+        // info de albummm
+        const albumInfo =
+          `${year} · ${tracks.length} tracks · ${mood} mood`
+        const finePrint =
+          `You're exploring ${album} with ${listeningSessions} ${sessionLabel}.`
+
+        // para construir el tracklist y filtrear/buscar canciones
+        let tracklistHTML = ''
+        for (let i = 0; i < tracks.length; i++) {
+          const trackNumber = i + 1
+          const stripe = i % 2 === 0 ? 'stripe' : ''
+
+          // para revisar que la cancion si matchee con la busqueda (osea que sirva basically)
+          if (tracks[i].toLowerCase().includes(searchTerm.toLowerCase())) {
+            tracklistHTML += `
+              <li class="${stripe}">
+                <span class="time">${trackNumber}</span>
+                ${tracks[i]}
+              </li>
+            `
+          }
+
+        }
+
+        // si ninguna cancion matchea con la busqueda, mostrar un mensaje
+        if (tracklistHTML === '') {
+          tracklistHTML = '<li>No songs found!</li>'
+        }
+
+        // para updatear el html page
+        document.querySelector('#album-title').textContent = album
+        document.querySelector('#album-info').textContent = albumInfo
+        document.querySelector('#status').textContent = status
+        document.querySelector('#duration-line').textContent =
+          `One listen — ${duration.toFixed(2)} minutes`
+        document.querySelector('#sessions-line').textContent =
+          `${listeningSessions} ${sessionLabel}`
+        document.querySelector('#album-type').textContent = albumType
+        document.querySelector('#total-duration').textContent =
+          `${totalDuration.toFixed(2)} min`
+        document.querySelector('#fine-print').textContent = finePrint
+        document.querySelector('#album-tagline').textContent = albumTagline
+        document.querySelector('#tracklist').innerHTML = tracklistHTML
+
+        // para dar el update de the listening sessions counter
+        document.querySelector('#count').textContent = listeningSessions
+
+        // update el search input
+        document.querySelector('#song-search').value = searchTerm
+
+        // para updatear el accent color
+        document.body.style.setProperty('--accent', accent)
+
+        // para qutar los botones when reaching the limits
+        document.querySelector('#minus').disabled =
+          listeningSessions === MIN_SESSIONS
+        document.querySelector('#plus').disabled =
+          listeningSessions === MAX_SESSIONS
+
+        // para loggear information in the console
+        console.log({
+          album,
+          year,
+          duration,
+          tracks,
+          mood,
+          listeningSessions,
+          totalDuration,
+          averageTrackDuration,
+          isLongAlbum,
+          isMultipleSessions
+        })
+      }
+
+     /* =======================================================
+      6.  HANDLERS
+    ======================================================= */
+
+      // para darle un increase a los listening sessions
+
+      function handlePlus() {
+        if (listeningSessions < MAX_SESSIONS) {
+          listeningSessions = listeningSessions + 1
+          re
+        }
+      }
+
+      // para darle un decrease listening sessions
+      function handleMinus() {
+        if (listeningSessions > MIN_SESSIONS) {
+          listeningSessions = listeningSessions - 1
+          render()
+        }
+      }
+
+      // para generar otro album
+      function handleRoll() {
+        let newAlbumIndex = currentAlbumIndex
+
+        // para hacer que el nuevo album sea diferente al actual
+        while (newAlbumIndex === currentAlbumIndex) {
+          newAlbumIndex = randomBetween(0, albums.length - 1)
+        }
+        currentAlbumIndex = newAlbumIndex
+
+        // para resetar las sesiones de listenings y busquedas
+        listeningSessions = 1
+        searchTerm = ''
+
+        // para selecionar detalles nuevos
+        mood = pickRandom(moods)
+        albumTagline = pickRandom(taglines)
+        accent = pickRandom(accents)
+        render()
+      }
+
+      // para buscar canciones mientras se escribeeee
+      function handleSearch(event) {
+        searchTerm = event.target.value
+        render()
+      }
+
+    /* =======================================================
+      7.  EVENT LISTENERS
+    ======================================================= */
+     document.addEventListener('DOMContentLoaded', function () {
+
+        // + y - botones
+        document.querySelector('#plus').addEventListener('click', handlePlus)
+        document.querySelector('#minus').addEventListener('click', handleMinus)
+
+        // boton de generar otro album
+        document.querySelector('#roll').addEventListener('click', handleRoll)
+
+        // search input
+        document.querySelector('#song-search').addEventListener('input', handleSearch)
+
+        // initial page setup
+        render()
+      })
+
+    /* =======================================================
+      8.  A RANDOM COLOR SCHEME (este ae quedo igual al de la semana pasada)
+    ======================================================= */
+    document.body.style.setProperty('--accent', pickRandom(accents))
+
+    console.log({
+     album,
+     year,
+     duration,
+     tracks,
+     mood,
+     listeningSessions,
+     totalDuration,
+     averageTrackDuration,
+      isLongAlbum,
+     isMultipleSessions
+   })
+    </script>
+  </body>
